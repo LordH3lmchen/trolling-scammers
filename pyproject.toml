@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "trolling-scammers"
+version = "0.1.0"
+description = "Simple scripts to troll scammers"
+authors = ["Florian Trabauer <florian@trabauer.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+requests = "^2.32.3"
+vcardgen = "^0.9"
+PyZufall = "^0.13.2"
+faker = "^28.0.0"
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.26.0"
+black = "^24.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
