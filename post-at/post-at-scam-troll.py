@@ -2,12 +2,9 @@ import requests
 import os
 import random
 import string
-import json
 import re
-import time
 
 
-from pyzufall.person import Person
 from faker import Faker
 
 chars = string.ascii_letters + string.digits + '!@#$%^&*()'
@@ -27,6 +24,7 @@ phone_provider_prefix_de_AT = [
 # + 7 digit mobile phone number
 
 for x in range(5000):
+    print(f'{x:5}', end='')
     responses = []
     req_session = requests.Session() # run a session with persitent cookie ... 
     # form_count = random.randint(1,3) # how much data is provided to the scammers is randomized
@@ -51,8 +49,8 @@ for x in range(5000):
     fake_password = fake.password()
     print(f"{x:5} -- eMail (s1): {fake_profile['mail']}, Password (s2): {fake_password} ,", end='')
     response = req_session.post(scam_url, allow_redirects=False, data={
-    	's1': fake_profile['mail'],
-    	's2': fake_password,
+    	'xc1': fake_profile['mail'],
+    	'xc2': fake_password,
     })
     responses.append(response)
     #print(response)
@@ -71,15 +69,15 @@ for x in range(5000):
 
     print(f"PLZ (s11): {plz}, Ort (s12): {ort}, Name (s13): {fake_profile['name']}, CardData: {card_number} {card_expire_mm}/{card_expire_yy} CVV: {card_cvv}, phone: {phone}, ", end='')
     response = req_session.post(scam_url, allow_redirects=False, data={
-    	's11': plz,
-    	's12': ort,
-        's13': fake_profile['name'],
+    	'xc11': plz,
+    	'xc12': ort,
+        'xc13': fake_profile['name'],
         'Straße': '',
-        's14': card_number,
-        's15': card_expire_mm,
-        's16': card_expire_yy,
-        's17': card_cvv,
-        's18': phone,
+        'xc14': card_number,
+        'xc15': card_expire_mm,
+        'xc16': card_expire_yy,
+        'xc17': card_cvv,
+        'xc18': phone,
     })
     responses.append(response)
     #print(response)
@@ -89,8 +87,8 @@ for x in range(5000):
     fake_tan = f'{random.randint(0,999999):06}'
     print(f'fake_tan: {fake_tan}', end='')
     response = req_session.post(scam_url, allow_redirects=False, data={
-    	's20': fake_tan,
-    	's21': fake_tan,
+    	'xc20': fake_tan,
+    	'xc21': fake_tan,
     })
     responses.append(response)
     print(";     Response Codes: ", end='')
